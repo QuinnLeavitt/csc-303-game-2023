@@ -5,8 +5,6 @@ import flixel.util.FlxColor;
 import tank.Tank;
 import tank.TankFactory;
 import tank.controller.move.HorizontalMoveController;
-import tank.controller.move.KeyboardMoveController;
-import tank.controller.shoot.MouseShootController;
 import tank.controller.shoot.SpinShootController;
 
 class TestState extends FlxState {
