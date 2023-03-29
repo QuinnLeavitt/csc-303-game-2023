@@ -3,8 +3,6 @@ package level;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import haxe.EnumTools;
-import tank.Tank;
-import tank.TankFactory;
 
 enum Direction {
 	Up;
@@ -46,9 +44,6 @@ class LevelGenerator {
 		var map = instantiateMap();
 		map = addBordersToMap(map);
 		map = addObstaclesToMap(map);
-
-		placeTanks(map);
-
 		return map;
 	}
 
@@ -142,10 +137,11 @@ class LevelGenerator {
 		}
 	}
 
-	private function placeTanks(map:Array<Array<Int>>) {
-		var safeZoneY = 40;
+	public function placeEnemyTanks(map:Array<Array<Int>>):Array<Array<Int>> {
+		return map;
+	}
 
-		var playerTank = TankFactory.NewPlayerTank(100, 50);
-		add(playerTank.getAllSprites());
+	public function placePlayerTank(map:Array<Array<Int>>):Array<Array<Int>> {
+		return map;
 	}
 }
