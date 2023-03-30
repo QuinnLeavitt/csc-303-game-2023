@@ -130,11 +130,11 @@ class LevelGenerator {
 		}
 	}
 
-	public function placeEnemyTanks(map:Array<Array<Int>>):Array<Array<Int>> {
+	public static function placeEnemyTanks(map:Array<Array<Int>>):Array<Array<Int>> {
 		return map;
 	}
 
-	public function placePlayerTank(map:Array<Array<Int>>):Array<Array<Int>> {
+	public static function placePlayerTank(map:Array<Array<Int>>):Array<Array<Int>> {
 		return map;
 	}
 }
