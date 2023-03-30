@@ -27,12 +27,14 @@ class PlayState extends FlxState {
 
 		bgColor = FlxColor.WHITE;
 		var bitmap = LevelGenerator.generateLevel(LEVEL_HEIGHT, LEVEL_WIDTH);
-		var enemyBitmap = LevelGenerator.placeEnemyTanks(bitmap);
-		var playerBitmap = LevelGenerator.placePlayerTank(bitmap);
-
-		map = new FlxTilemap();
 		trace(bitmap);
+		map = new FlxTilemap();
 		map.loadMapFrom2DArray(bitmap, AssetPaths.Wall__png, TILE_WIDTH, TILE_HEIGHT);
+		trace(bitmap);
+		LevelGenerator.placeEnemyTanks(bitmap, LEVEL_HEIGHT, LEVEL_WIDTH);
+		trace(bitmap);
+		LevelGenerator.placePlayerTank(bitmap, LEVEL_HEIGHT, LEVEL_WIDTH);
+		trace(bitmap);
 		placePlayerTank();
 
 		add(map);
@@ -44,10 +46,12 @@ class PlayState extends FlxState {
 
 		FlxG.collide(playerTank, map);
 		FlxG.collide(enemyTanks, map);
+		FlxG.collide(playerTank, enemyTanks);
+		FlxG.collide(enemyTanks, enemyTanks);
 	}
 
 	private function addTanks() {
-		var tankCoordinates = [250, 300, 350];
+		var tankCoordinates = [200, 300, 400];
 		enemyTanks = new FlxTypedGroup<Tank>(3);
 		for (x in tankCoordinates) {
 			var enemy = TankFactory.NewDumbTank(x, 50);
@@ -59,7 +63,7 @@ class PlayState extends FlxState {
 	}
 
 	public function placePlayerTank() {
-		var playerTank = TankFactory.NewPlayerTank(500, 500);
+		playerTank = TankFactory.NewPlayerTank(250, 550);
 		add(playerTank.getAllSprites());
 	}
 }

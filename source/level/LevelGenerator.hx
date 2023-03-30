@@ -26,6 +26,8 @@ class LevelGenerator {
 
 	private static var BITMAP_INDEX_EMPTY(default, never):Int = 0;
 	private static var BITMAP_INDEX_WALL(default, never):Int = 1;
+	private static var BITMAP_INDEX_PLAYER(default, never):Int = 2;
+	private static var BITMAP_INDEX_ENEMY(default, never):Int = 3;
 
 	/**
 	 * Creates a randomly generated level in the form of a 2D Array
@@ -130,11 +132,20 @@ class LevelGenerator {
 		}
 	}
 
-	public static function placeEnemyTanks(map:Array<Array<Int>>):Array<Array<Int>> {
+	public static function placeEnemyTanks(map:Array<Array<Int>>, mapWidth:Int,
+			mapHeight:Int):Array<Array<Int>> {
+		for (y in 0...mapHeight) {
+			for (x in 0...mapWidth) {
+				if (map[y][x] == BITMAP_INDEX_EMPTY) {
+					map[y][x] = BITMAP_INDEX_ENEMY;
+				}
+			}
+		}
 		return map;
 	}
 
-	public static function placePlayerTank(map:Array<Array<Int>>):Array<Array<Int>> {
+	public static function placePlayerTank(map:Array<Array<Int>>, mapWidth:Int,
+			mapHeight:Int):Array<Array<Int>> {
 		return map;
 	}
 }
