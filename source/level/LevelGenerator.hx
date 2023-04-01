@@ -134,8 +134,15 @@ class LevelGenerator {
 
 	public static function placeEnemyTanks(map:Array<Array<Int>>, mapWidth:Int,
 			mapHeight:Int):Array<Array<Int>> {
+		var minX = MIN_GAP_SIZE_X;
+		var minY = MIN_GAP_SIZE_Y;
+		var maxX = mapWidth - 1 - MIN_GAP_SIZE_X;
+		var maxY = mapHeight - 1 - MIN_GAP_SIZE_Y;
 		for (y in 0...mapHeight) {
 			for (x in 0...mapWidth) {
+				var random = FlxG.random;
+				var startX:Int = random.int(minX, maxX);
+				var startY:Int = random.int(minY, maxY);
 				if (map[y][x] == BITMAP_INDEX_EMPTY) {
 					map[y][x] = BITMAP_INDEX_ENEMY;
 				}
@@ -146,6 +153,20 @@ class LevelGenerator {
 
 	public static function placePlayerTank(map:Array<Array<Int>>, mapWidth:Int,
 			mapHeight:Int):Array<Array<Int>> {
+		var minX = MIN_GAP_SIZE_X;
+		var minY = MIN_GAP_SIZE_Y;
+		var maxX = mapWidth - 1 - MIN_GAP_SIZE_X;
+		var maxY = mapHeight - 1 - MIN_GAP_SIZE_Y;
+		for (y in 0...mapHeight) {
+			for (x in 0...mapWidth) {
+				var random = FlxG.random;
+				var startX:Int = random.int(minX, maxX);
+				var startY:Int = random.int(minY, maxY);
+				if (map[y][x] == BITMAP_INDEX_EMPTY) {
+					map[y][x] = BITMAP_INDEX_ENEMY;
+				}
+			}
+		}
 		return map;
 	}
 }
